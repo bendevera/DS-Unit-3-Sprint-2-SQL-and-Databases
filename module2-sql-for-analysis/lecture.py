@@ -1,10 +1,13 @@
 import psycopg2
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 conn = psycopg2.connect(
-    host="rajje.db.elephantsql.com", 
-    dbname="wtnyewuq", 
-    user="wtnyewuq", 
-    password="0QLakbkJRZqDXSnoC6OPWzpR6EVcHyqV"
+    host=os.getenv('DB_HOST'), 
+    dbname=os.getenv('DB_USER'), 
+    user=os.getenv('DB_USER'), 
+    password=os.getenv('DB_PASSWORD')
 )
 cur = conn.cursor()
 

@@ -1,5 +1,8 @@
 import pandas as pd 
 import psycopg2
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # read in our data
 df = pd.read_csv('./titanic.csv')
@@ -7,10 +10,10 @@ print(f"DF shape: {df.shape}")
 
 # create connection to db we want to move the data to
 conn = psycopg2.connect(
-    host="rajje.db.elephantsql.com", 
-    dbname="wtnyewuq", 
-    user="wtnyewuq", 
-    password="0QLakbkJRZqDXSnoC6OPWzpR6EVcHyqV"
+    host=os.getenv('DB_HOST'), 
+    dbname=os.getenv('DB_USER'), 
+    user=os.getenv('DB_USER'), 
+    password=os.getenv('DB_PASSWORD')
 )
 cur = conn.cursor()
 
